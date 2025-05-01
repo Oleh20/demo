@@ -773,7 +773,7 @@ MonoBehaviour:
   _finalScoreText: {fileID: 805985598}
   _bestScoreText: {fileID: 1812480011}
   _restartButton: {fileID: 54749414}
-  _exitButton: {fileID: 0}
+  _exitButton: {fileID: 1696158601}
 --- !u!114 &440739825
 MonoBehaviour:
   m_ObjectHideFlags: 0
