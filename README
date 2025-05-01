@@ -1,0 +1,51 @@
+# 🎯 Target Game
+
+**Target Game** is a fast-paced arcade mini-game where the player clicks on moving targets to gain points while avoiding "bad" objects. The gameplay loop is simple but becomes progressively harder as targets spawn more frequently over time.
+
+---
+
+## 🔧 Technologies Used
+
+- **Unity Engine** (2022+)
+- **C#**
+- **TextMeshPro** for UI elements
+- **ScriptableObjects** for configuration
+- **PlayerPrefs** for saving high scores
+- **PhysX** (via Rigidbody) for physical impulses and movement
+
+---
+
+## 📐 Architecture & Design Patterns
+
+The project follows a clean separation of concerns, designed for easy maintenance, extensibility, and scalability.
+
+### 🧱 Main Components
+
+| Component         | Responsibility                                               |
+|-------------------|--------------------------------------------------------------|
+| `GameModel`       | Holds game state: score, lives, game over logic              |
+| `GameController`  | Main coordinator between the model, UI, and spawner          |
+| `UIManager`       | Updates UI elements, handles game over screen                |
+| `TargetSpawner`   | Randomly spawns targets at set intervals                     |
+| `TargetView`      | Represents the visual and clickable target                   |
+| `GameSettings`    | ScriptableObject containing all gameplay configuration       |
+
+---
+
+### 🧩 Design Patterns Applied
+
+- **MVC-lite** (Model-View-Controller)
+  - `GameModel` = Model
+  - `TargetView`, `GameOverView` = Views
+  - `GameController`, `TargetSpawner` = Controllers
+- **Event-driven architecture** – `TargetSpawner` notifies via event when a target is clicked
+- **Dependency Injection via Inspector** – clean injection of references via serialized fields
+- **Object Pooling** *(in progress)* – to replace expensive `Instantiate/Destroy` operations
+- **ScriptableObject Configuration** – flexible, reusable gameplay parameters
+
+---
+
+## 🧪 Additional Notes
+
+- Dynamic difficulty: the game increases in challenge as the score increases by reducing spawn intervals.
+- Game over screen shows current and best scores using `PlayerPrefs`.
